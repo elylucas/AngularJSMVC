@@ -40,3 +40,12 @@ input[type="checkbox"].input-validation-error {
 .validation-summary-valid {
     display: none;
 }
+
+.tweet {
+    border-bottom: 1px solid #808080;
+    padding: 10px 0px;
+}
+
+.user {
+    color: #a0a0a0;
+}

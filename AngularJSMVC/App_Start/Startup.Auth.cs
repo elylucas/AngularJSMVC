@@ -1,4 +1,5 @@
-﻿using System.Security.Claims;
+﻿using System.Configuration;
+using System.Security.Claims;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
@@ -28,8 +29,8 @@ namespace AngularJSMVC
 
             app.UseTwitterAuthentication(new TwitterAuthenticationOptions()
             {
-                ConsumerKey = "6hj9iaDbPOsoYpcvYZOUA",
-                ConsumerSecret = "ncIv42Nz3EzPz5rDojpTMUilm35B8JJboMN7joR0",
+                ConsumerKey = ConfigurationManager.AppSettings["twitterConsumerKey"],
+                ConsumerSecret = ConfigurationManager.AppSettings["twitterConsumerSecret"],
                 Provider = new TwitterAuthenticationProvider()
                 {
                     OnAuthenticated = async context =>

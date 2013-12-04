@@ -273,6 +273,7 @@ namespace AngularJSMVC.Controllers
                     if (result.Succeeded)
                     {
                         await SignInAsync(user, isPersistent: false);
+                        await StoreAuthTokenClaims(user);
                         return RedirectToLocal(returnUrl);
                     }
                 }
@@ -317,6 +318,32 @@ namespace AngularJSMVC.Controllers
                 UserManager = null;
             }
             base.Dispose(disposing);
+        }
+
+        private async Task StoreAuthTokenClaims(ApplicationUser user)
+        {
+            // Get the claims identity
+            ClaimsIdentity claimsIdentity =
+                await AuthenticationManager.GetExternalIdentityAsync(DefaultAuthenticationTypes.ExternalCookie);
+
+            if (claimsIdentity != null)
+            {
+                // Retrieve the existing claims
+                var currentClaims = await UserManager.GetClaimsAsync(user.Id);
+
+                // Get the list of access token related claims from the identity
+                var tokenClaims = claimsIdentity.Claims
+                    .Where(c => c.Type.StartsWith("urn:tokens:"));
+
+                // Save the access token related claims
+                foreach (var tokenClaim in tokenClaims)
+                {
+                    if (!currentClaims.Contains(tokenClaim))
+                    {
+                        await UserManager.AddClaimAsync(user.Id, tokenClaim);
+                    }
+                }
+            }
         }
 
         #region Helpers

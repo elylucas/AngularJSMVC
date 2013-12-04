@@ -9,7 +9,12 @@ namespace AngularJSMVC
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                "~/Scripts/jquery-{version}.js",
+                "~/Scripts/angular.js",
+                "~/Scripts/angular-route.js",
+                "~/app/app.js",
+                "~/app/controllers.js",
+                "~/app/services.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
