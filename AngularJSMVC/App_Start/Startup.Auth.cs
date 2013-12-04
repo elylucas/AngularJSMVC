@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using System.Security.Claims;
+using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
+using Microsoft.Owin.Security.Twitter;
 using Owin;
 
 namespace AngularJSMVC
@@ -24,9 +26,19 @@ namespace AngularJSMVC
             //    clientId: "",
             //    clientSecret: "");
 
-            //app.UseTwitterAuthentication(
-            //   consumerKey: "",
-            //   consumerSecret: "");
+            app.UseTwitterAuthentication(new TwitterAuthenticationOptions()
+            {
+                ConsumerKey = "6hj9iaDbPOsoYpcvYZOUA",
+                ConsumerSecret = "ncIv42Nz3EzPz5rDojpTMUilm35B8JJboMN7joR0",
+                Provider = new TwitterAuthenticationProvider()
+                {
+                    OnAuthenticated = async context =>
+                    {
+                        context.Identity.AddClaim(new Claim("urn:tokens:twitter:accesstoken", context.AccessToken));
+                        context.Identity.AddClaim(new Claim("urn:tokens:twitter:accesstokensecret", context.AccessTokenSecret));
+                    }
+                }
+            });
 
             //app.UseFacebookAuthentication(
             //   appId: "",
