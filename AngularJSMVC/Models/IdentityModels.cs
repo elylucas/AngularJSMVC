@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
+﻿using System.Data.Entity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace AngularJSMVC.Models
 {
@@ -9,6 +10,8 @@ namespace AngularJSMVC.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public IDbSet<Tweet> FavoriteTweets { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection")
         {
