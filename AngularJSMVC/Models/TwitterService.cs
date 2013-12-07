@@ -104,6 +104,13 @@ namespace AngularJSMVC.Models
                 _dbContext.SaveChanges();
             }
         }
+
+        public List<Tweet> GetFavorites()
+        {
+            var tweets = _dbContext.FavoriteTweets.ToList();
+            return tweets;
+        }
+
     }
 
     public interface ITwitterService
@@ -112,5 +119,6 @@ namespace AngularJSMVC.Models
         TwitterUser GetUser(string username);
         void FavoriteTweet(Tweet tweet);
         void UnFavoriteTweet(string statusId);
+        List<Tweet> GetFavorites();
     }
 }
