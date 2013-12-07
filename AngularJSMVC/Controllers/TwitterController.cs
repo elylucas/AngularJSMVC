@@ -24,5 +24,19 @@ namespace AngularJSMVC.Controllers
             var tweets = _twitterService.GetUserStatuses();
             return Request.CreateResponse(HttpStatusCode.OK, tweets);
         }
+
+        [Route("profile/{username}")]
+        public HttpResponseMessage GetProfile(string username)
+        {
+            var profile = _twitterService.GetUser(username);
+            return Request.CreateResponse(HttpStatusCode.OK, profile);
+        }
+
+        [Route("favorites")]
+        public HttpResponseMessage GetFavorites()
+        {
+            var tweets = _twitterService.get
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
     }
 }

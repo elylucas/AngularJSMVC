@@ -263,3 +263,4 @@
 /// <reference path="../app/app.js" />
 /// <reference path="../app/controllers.js" />
 /// <reference path="../app/services.js" />
+/// <reference path="../app/filters.js" />

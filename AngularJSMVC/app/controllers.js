@@ -8,5 +8,11 @@
             $scope.tweets = data;
         });
     });
-
+    
+    app.controller('profileController', function ($scope, twitterService, $routeParams) {
+        twitterService.getProfile($routeParams.username).then(function(data) {
+            $scope.profile = data;
+        });
+    });
+    
 })();

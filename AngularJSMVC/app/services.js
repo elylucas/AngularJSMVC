@@ -18,8 +18,21 @@
             return deferred.promise;
         };
 
+        var getProfile = function(username) {
+            var deferred = $q.defer();
+            $http.get('/api/twitter/profile/' + username)
+                .success(function (data) {
+                    deferred.resolve(data);
+                })
+                .error(function (data, status, header, config) {
+                    deferred.reject(status);
+                });
+            return deferred.promise;
+        };
+
         return {
-            getTweets: getTweets
+            getTweets: getTweets,
+            getProfile: getProfile
         };
 
     });
