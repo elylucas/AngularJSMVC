@@ -16,6 +16,7 @@ namespace AngularJSMVC
                 "~/app/app.js",
                 "~/app/controllers.js",
                 "~/app/filters.js",
+                "~/app/directives.js",
                 "~/app/services.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(

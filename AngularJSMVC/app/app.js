@@ -14,6 +14,11 @@
             templateUrl: 'app/views/profile.html'
         });
 
+        $routeProvider.when('/favorites', {
+            controller: 'favoritesController',
+            templateUrl: 'app/views/favorites.html'
+        });
+
     });
     
 

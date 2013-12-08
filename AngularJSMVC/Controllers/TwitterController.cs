@@ -32,10 +32,26 @@ namespace AngularJSMVC.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, profile);
         }
 
-        [Route("favorites")]
+        [Route("favorite")]
         public HttpResponseMessage GetFavorites()
         {
-            var tweets = _twitterService.get
+            var tweets = _twitterService.GetFavorites();
+            return Request.CreateResponse(HttpStatusCode.OK, tweets);
+        }
+
+        [Route("favorite")]
+        [HttpPost]
+        public HttpResponseMessage FavoriteTweet(Tweet tweet)
+        {
+            _twitterService.FavoriteTweet(tweet);
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
+        [Route("favorite/{statusId}")]
+        [HttpDelete]
+        public HttpResponseMessage UnFavoriteTweet(string statusId)
+        {
+            _twitterService.UnFavoriteTweet(statusId);
             return Request.CreateResponse(HttpStatusCode.OK);
         }
     }

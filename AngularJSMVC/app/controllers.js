@@ -7,6 +7,16 @@
         twitterService.getTweets().then(function(data) {
             $scope.tweets = data;
         });
+
+        $scope.favoriteTweet = function(tweet) {
+            if (tweet.isFavorite) {
+                twitterService.unfavoriteTweet(tweet);
+            } else {
+                twitterService.favoriteTweet(tweet);
+            }
+            tweet.isFavorite = !tweet.isFavorite;
+        };
+        
     });
     
     app.controller('profileController', function ($scope, twitterService, $routeParams) {
@@ -14,5 +24,23 @@
             $scope.profile = data;
         });
     });
+    
+    app.controller('favoritesController', function ($scope, twitterService) {
+        twitterService.getFavorites().then(function(data) {
+            $scope.tweets = data;
+        });
+        
+        $scope.favoriteTweet = function (tweet) {
+            if (tweet.isFavorite) {
+                twitterService.unfavoriteTweet(tweet);
+            } else {
+                twitterService.favoriteTweet(tweet);
+            }
+            tweet.isFavorite = !tweet.isFavorite;
+        };
+    });
+    
+
+
     
 })();
