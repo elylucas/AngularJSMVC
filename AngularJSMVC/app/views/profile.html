@@ -1,3 +1,14 @@
-﻿<div class="row tweet" ng-show="profile">
-    <tweet></tweet>
+﻿<h3>Twitter Profile</h3>
+<div class="row tweet" ng-show="profile">
+    <div class="col-md-1">
+        <img class="" ng-src="{{profile.imageUrl}}" />
+    </div>
+    <div class="col-md-8">
+        <small class="user">
+            <strong class="">{{ profile.name }}</strong>
+            <span>@{{ profile.screenName }}</span>
+        </small>
+        <div>{{ profile.description }}</div>
+        <div>Followers: {{ profile.followers }} | Following: {{ profile.following }} | Tweets: {{ profile.tweets }}</div>
+    </div>
 </div>

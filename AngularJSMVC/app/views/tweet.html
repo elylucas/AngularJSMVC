@@ -7,7 +7,7 @@
         <span>@{{ tweet.screenName }}</span>
         <span class="">{{ tweet.createdAt }}</span>
     </small>
-    <div ng-bind-html="tweet.text | linky | twitterLinks"></div>
+    <div ng-bind-html="tweet.text | linky "></div>
 </div>
 <div class="col-md-2 col-md-offset-2">
     <button ng-click="favoriteTweet(tweet)" ng-class="{'btn-success': tweet.isFavorite, 'btn-primary': !tweet.isFavorite}"

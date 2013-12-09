@@ -6,7 +6,15 @@
     app.factory('twitterService', function($http, $q) {
 
         var getTweets = function() {
-            return $http.get('/api/twitter');
+            var deferred = $q.defer();
+            $http.get('/api/twitter/')
+                .success(function (data) {
+                    deferred.resolve(data);
+                })
+                .error(function (data, status, header, config) {
+                    deferred.reject(status);
+                });
+            return deferred.promise;
         };
 
         var getProfile = function(username) {

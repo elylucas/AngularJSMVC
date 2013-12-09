@@ -4,8 +4,8 @@
     var app = angular.module('tweetApp');
 
     app.controller('homeController', function($scope, twitterService) {
-        twitterService.getTweets().then(function(data) {
-            $scope.tweets = data;
+        twitterService.getTweets().then(function (data) {
+           $scope.tweets = data;
         });
 
         $scope.favoriteTweet = function(tweet) {
@@ -20,7 +20,8 @@
     });
     
     app.controller('profileController', function ($scope, twitterService, $routeParams) {
-        twitterService.getProfile($routeParams.username).then(function(data) {
+        twitterService.getProfile($routeParams.username).then(function (data) {
+            console.log(data);
             $scope.profile = data;
         });
     });
